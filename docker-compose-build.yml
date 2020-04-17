@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./mysql/:/var/lib/mysql/
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: openvpn
+      MYSQL_DATABASE: openvpn
+      MYSQL_USER: openvpn
+      MYSQL_PASSWORD: openvpn
+    networks:
+      - openvpn-manager
+  apioak:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    depends_on: 
+      - mysql
+    ports:
+      - "80:80"
+      - "1194:1194/udp"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: openvpn      
+      DB_USER: openvpn
+      DB_PASSWORD: openvpn
+    networks:
+      - openvpn-manager
+
+networks:
+  openvpn-manager:

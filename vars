@@ -1,0 +1,11 @@
+export EASYRSA_REQ_COUNTRY=cn 
+export EASYRSA_REQ_PROVINCE=shanghai
+export EASYRSA_REQ_CITY=shanghai
+export EASYRSA_REQ_ORG=ovpn
+export EASYRSA_REQ_EMAIL=admin@ovpn.com
+export EASYRSA_REQ_OU=ovpn
+
+
+export EASYRSA_KEY_SIZE=2048
+export EASYRSA_CA_EXPIRE=3650
+export EASYRSA_CERT_EXPIRE=3650
