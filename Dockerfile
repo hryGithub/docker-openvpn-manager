@@ -13,14 +13,14 @@ RUN  mv /var/www/localhost/htdocs/include/scripts /etc/openvpn/ && chmod +x /etc
 #openvpn env
 ENV OVPN_ADDR=0.0.0.0 \ 
     OVPN_PORT=1194 \    
-    OVPN_PRO=udp
+    OVPN_PROTO=udp
 
 #db
 ENV DB_HOST=127.0.0.1 \
     DB_PORT=3306 \
     DB_NAME=openvpn \
     DB_USER=openvpn \
-    DB_PASSWORD=openvpn \
+    DB_PASSWORD=openvpn
 
 
 
