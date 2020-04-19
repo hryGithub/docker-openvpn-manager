@@ -8,7 +8,7 @@ RUN echo -e "http://mirrors.aliyun.com/alpine/v3.6/main\nhttp://mirrors.aliyun.c
 RUN mkdir -p /etc/openvpn/ccd && mkdir /run/apache2 -p && chmod 777 -R /run
 
 
-ADD ./openvpn-admin /var/www/localhost/htdocs
+ADD ./openvpn-manager /var/www/localhost/htdocs
 RUN  mv /var/www/localhost/htdocs/include/scripts /etc/openvpn/ && chmod +x /etc/openvpn/*.sh 
 #openvpn env
 ENV OVPN_ADDR=0.0.0.0 \ 
