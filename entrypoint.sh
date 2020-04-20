@@ -9,8 +9,11 @@ sed -i "s@DB='openvpn-admin'@DB='$DB_NAME'@g" /etc/openvpn/scripts/config.sh    
 
 
 #config openvpn
-sed -i "s@proto tcp@proto $OVPN_PROTO@g" /etc/openvpn/server.conf
-sed -i "s@port 1194@port $OVPN_PORT@g" /etc/openvpn/server.conf
+if [ ! -f /etc/openvpn/server.conf ];then
+    cp /var/www/localhost/htdocs/installation/server.conf /etc/openvpn/
+    sed -i "s@proto tcp@proto $OVPN_PROTO@g" /etc/openvpn/server.conf
+    sed -i "s@port 1194@port $OVPN_PORT@g" /etc/openvpn/server.conf
+fi
 
 init-pki(){
     cd $OPENVPN 
