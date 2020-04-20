@@ -27,7 +27,7 @@ init-pki(){
 
 #init-pki
 if [ ! -f '/etc/openvpn/ca.crt'];then
-    init_pki()
+    init_pki
 fi
 
 #config ovpn-client
