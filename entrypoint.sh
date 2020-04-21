@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #config db
-sed -i "s@HOST='localhost'@HOST='$DB_HOST'@g"   /etc/openvpn/scripts/config.sh  /var/www/localhost/htdocs/include/config.php
-sed -i "s@PORT='3306'@PORT='$DB_PORT'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
-sed -i "s@USER=''@USER='$DB_USER'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
-sed -i "s@PASS=''@PASS='$DB_PASSWORD'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
-sed -i "s@DB='openvpn-admin'@DB='$DB_NAME'@g" /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
+sed -i "s@host='localhost'@host='$DB_HOST'@g"   /etc/openvpn/scripts/config.sh  /var/www/localhost/htdocs/include/config.php
+sed -i "s@port='3306'@port='$DB_PORT'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
+sed -i "s@user=''@user='$DB_USER'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
+sed -i "s@pass=''@pass='$DB_PASSWORD'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
+sed -i "s@db='openvpn-admin'@db='$DB_NAME'@g" /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
 
 
 #config openvpn
@@ -26,7 +26,7 @@ init-pki(){
 }
 
 #init-pki
-if [ ! -f '/etc/openvpn/ca.crt'];then
+if [ ! -f '/etc/openvpn/ca.crt' ];then
     init_pki
 fi
 
