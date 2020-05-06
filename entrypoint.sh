@@ -16,7 +16,7 @@ if [ ! -f /etc/openvpn/server.conf ];then
 fi
 
 init-pki(){
-    cd $OPENVPN 
+    source $EASYRSA/vars.examples
     easyrsa init-pki
     easyrsa build-ca nopass
     easyrsa gen-dh
@@ -27,7 +27,7 @@ init-pki(){
 
 #init-pki
 if [ ! -f '/etc/openvpn/ca.crt' ];then
-    init_pki
+    init-pki
 fi
 
 #config ovpn-client
@@ -58,10 +58,5 @@ fi
 iptables -t nat -A POSTROUTING -s 10.254.254.0/24 -o eth0 -j MASQUERADE
 
 
-genconfig(){
-    echo 1
-}
-
-
 httpd -DFOREGROUND
-#/usr/sbin/openvpn --config /etc/openvpn/server.conf
+#cd /etc/openvpn && /usr/sbin/openvpn --config /etc/openvpn/server.conf
