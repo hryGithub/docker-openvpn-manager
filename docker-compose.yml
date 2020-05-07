@@ -3,6 +3,7 @@ version: '3'
 services:
   mysql:
     image: mysql:5.7
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./mysql/:/var/lib/mysql/
     restart: always
@@ -15,10 +16,11 @@ services:
       MYSQL_PASSWORD: openvpn
     networks:
       - openvpn-manager
-  apioak:
+  openvpn-manager:
     image: hry326/openvpn-manager
     depends_on: 
       - mysql
+    restart: on-failure
     ports:
       - "80:80"
       - "1194:1194/udp"
@@ -29,6 +31,7 @@ services:
       DB_USER: openvpn
       DB_PASSWORD: openvpn
       OVPN_ADDR: 
+      LAN: CN
     networks:
       - openvpn-manager
 
