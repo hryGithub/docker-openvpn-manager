@@ -51,7 +51,7 @@ if [ ! -d /var/www/localhost/htdocs/client-conf ];then
         cat "/etc/openvpn/ta.key" >> $file
         echo "</tls-auth>" >> $file
 
-    if [ $openvpn_proto = "udp" ]; then
+    if [ $OVPN_PROTO = udp ]; then
         sed -i "s/proto tcp-client/proto udp/g" $file
     fi
     done
