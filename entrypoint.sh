@@ -16,9 +16,14 @@ if [ ! -f /etc/openvpn/server.conf ];then
 fi
 
 init-pki(){
-    source $EASYRSA/vars.examples
+    source $EASYRSA/vars.example
     easyrsa init-pki
-    easyrsa build-ca nopass
+    expect -c '
+    	spawn easyrsa build-ca nopass
+    	expect "*:"
+    	send "\r"
+	    expect eof
+    '
     easyrsa gen-dh
     easyrsa build-server-full server nopass
     openvpn --genkey --secret $EASYRSA/pki/ta.key
@@ -36,6 +41,7 @@ if [ $OVPN_PROTO = udp ];then
 fi
 if [ ! -d /var/www/localhost/htdocs/client-conf ];then
     cp -r /var/www/localhost/htdocs/installation/client-conf /var/www/localhost/htdocs/
+    chmod -R apache.apache /var/www/localhost/htdocs/client-conf
     for file in $(find /var/www/localhost/htdocs/client-conf -name client.ovpn); do
         sed -i "s/remote xxx\.xxx\.xxx\.xxx 443/remote $OVPN_ADDR $OVPN_PORT/" $file
         echo "<ca>" >> $file
