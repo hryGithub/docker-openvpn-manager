@@ -41,7 +41,7 @@ if [ $OVPN_PROTO = udp ];then
 fi
 if [ ! -d /var/www/localhost/htdocs/client-conf ];then
     cp -r /var/www/localhost/htdocs/installation/client-conf /var/www/localhost/htdocs/
-    chmod -R apache.apache /var/www/localhost/htdocs/client-conf
+    chown -R apache.apache /var/www/localhost/htdocs/client-conf
     for file in $(find /var/www/localhost/htdocs/client-conf -name client.ovpn); do
         sed -i "s/remote xxx\.xxx\.xxx\.xxx 443/remote $OVPN_ADDR $OVPN_PORT/" $file
         echo "<ca>" >> $file
@@ -52,7 +52,7 @@ if [ ! -d /var/www/localhost/htdocs/client-conf ];then
         echo "</tls-auth>" >> $file
 
     if [ $openvpn_proto = "udp" ]; then
-        sed -i "s/proto tcp-client/proto udp/" $file
+        sed -i "s/proto tcp-client/proto udp/g" $file
     fi
     done
 fi
@@ -63,6 +63,6 @@ if [ ! -c /dev/net/tun ]; then
 fi
 iptables -t nat -A POSTROUTING -s 10.254.254.0/24 -o eth0 -j MASQUERADE
 
+cd /etc/openvpn && /usr/sbin/openvpn --config /etc/openvpn/server.conf
 
 httpd -DFOREGROUND
-cd /etc/openvpn && /usr/sbin/openvpn --config /etc/openvpn/server.conf
