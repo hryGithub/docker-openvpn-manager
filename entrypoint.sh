@@ -63,6 +63,5 @@ if [ ! -c /dev/net/tun ]; then
 fi
 iptables -t nat -A POSTROUTING -s 10.254.254.0/24 -o eth0 -j MASQUERADE
 
+httpd
 cd /etc/openvpn && /usr/sbin/openvpn --config /etc/openvpn/server.conf
-
-httpd -DFOREGROUND
