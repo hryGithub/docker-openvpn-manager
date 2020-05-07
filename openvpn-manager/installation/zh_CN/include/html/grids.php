@@ -28,10 +28,10 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
 }
 ?>
 <ul class="nav nav-tabs">
-   <li class="active"><a data-toggle="tab" href="#menu0"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> OpenVPN Users</a></li>
-   <li><a data-toggle="tab" href="#menu1"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> OpenVPN logs</a></li>
-   <li><a data-toggle="tab" href="#menu2"><span class="glyphicon glyphicon-king" aria-hidden="true"></span> Web Admins</a></li>
-   <li><a data-toggle="tab" href="#menu3"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Configs</a></li>
+   <li class="active"><a data-toggle="tab" href="#menu0"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>用户管理</a></li>
+   <li><a data-toggle="tab" href="#menu1"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> 日志查询</a></li>
+   <li><a data-toggle="tab" href="#menu2"><span class="glyphicon glyphicon-king" aria-hidden="true"></span> 管理员</a></li>
+   <li><a data-toggle="tab" href="#menu3"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 配置文件</a></li>
 </ul>
 <div class="tab-content">
 
@@ -39,7 +39,7 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
       <!-- Users grid -->
       <div class="block-grid row" id="user-grid">
          <h4>
-            OpenVPN Users <button data-toggle="modal" data-target="#modal-user-add" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+            用户管理 <button data-toggle="modal" data-target="#modal-user-add" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
          </h4>
          <table id="table-users" class="table"></table>
 
@@ -48,21 +48,21 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
                <div class="modal-content">
                   <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title">Add user</h4>
+                     <h4 class="modal-title">添加用户</h4>
                   </div>
                   <div class="modal-body">
                      <div class="form-group">
-                        <label for="modal-user-add-username">Username</label>
+                        <label for="modal-user-add-username">用户名</label>
                         <input type="text" name="username" id="modal-user-add-username" class="form-control" autofocus/>
                      </div>
                      <div class="form-group">
-                        <label for="modal-user-add-password">Password</label>
+                        <label for="modal-user-add-password">密码</label>
                         <input type="password" name="password" id="modal-user-add-password" class="form-control" />
                      </div>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                     <button type="button" class="btn btn-primary" id="modal-user-add-save">Save</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                     <button type="button" class="btn btn-primary" id="modal-user-add-save">保存</button>
                   </div>
                </div>
             </div>
@@ -74,7 +74,7 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
       <!-- Logs grid -->
       <div class="block-grid row" id="log-grid">
          <h4>
-            OpenVPN logs
+            日志查询
          </h4>
          <table id="table-logs" class="table" data-filter-control="true"></table>
       </div>
@@ -84,7 +84,7 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
       <!-- Admins grid -->
       <div class="block-grid row" id="admin-grid">
          <h4>
-            Web Admins <button data-toggle="modal" data-target="#modal-admin-add" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+            管理员 <button data-toggle="modal" data-target="#modal-admin-add" type="button" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
          </h4>
          <table id="table-admins" class="table"></table>
 
@@ -93,21 +93,21 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
                <div class="modal-content">
                   <div class="modal-header">
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                     <h4 class="modal-title">Add admin</h4>
+                     <h4 class="modal-title">添加管理员</h4>
                   </div>
                   <div class="modal-body">
                      <div class="form-group">
-                        <label for="modal-admin-add-username">Username</label>
+                        <label for="modal-admin-add-username">用户名</label>
                         <input type="text" name="username" id="modal-admin-add-username" class="form-control" autofocus/>
                      </div>
                      <div class="form-group">
-                        <label for="modal-admin-add-password">Password</label>
+                        <label for="modal-admin-add-password">密码</label>
                         <input type="password" name="password" id="modal-admin-add-password" class="form-control" />
                      </div>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                     <button type="button" class="btn btn-primary" id="modal-admin-add-save">Save</button>
+                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                     <button type="button" class="btn btn-primary" id="modal-admin-add-save">保存</button>
                   </div>
                </div>
             </div>
@@ -128,7 +128,7 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
          <div class="tab-content">
             <div id="menu-1-0" class="tab-pane fade in active">
 
-               <textarea class="form-control" data-config-file="<?= $cfg_file='client-conf/gnu-linux/client.conf' ?>" name="" id="" cols="30" rows="20"><?= file_get_contents($cfg_file) ?></textarea>
+               <textarea class="form-control" data-config-file="<?= $cfg_file='client-conf/gnu-linux/client.ovpn' ?>" name="" id="" cols="30" rows="20"><?= file_get_contents($cfg_file) ?></textarea>
                <?= getHistory($cfg_file, @++$accId) ?>
 
             </div>
@@ -140,7 +140,7 @@ function getHistory($cfg_file, $accordion_id, $open_first_history_tab = false) {
             </div>
             <div id="menu-1-2" class="tab-pane fade">
 
-               <textarea class="form-control" data-config-file="<?= $cfg_file='client-conf/osx-viscosity/client.conf' ?>" name="" id="" cols="30" rows="20"><?= file_get_contents($cfg_file) ?></textarea>
+               <textarea class="form-control" data-config-file="<?= $cfg_file='client-conf/osx-viscosity/client.ovpn' ?>" name="" id="" cols="30" rows="20"><?= file_get_contents($cfg_file) ?></textarea>
                <?= getHistory($cfg_file, ++$accId) ?>
 
             </div>

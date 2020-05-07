@@ -1,16 +1,16 @@
 #!/bin/bash
 
 #config db
-sed -i "s@host='localhost'@host='$DB_HOST'@g"   /etc/openvpn/scripts/config.sh  /var/www/localhost/htdocs/include/config.php
-sed -i "s@port='3306'@port='$DB_PORT'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
-sed -i "s@user=''@user='$DB_USER'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
-sed -i "s@pass=''@pass='$DB_PASSWORD'@g"  /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
-sed -i "s@db='openvpn-admin'@db='$DB_NAME'@g" /etc/openvpn/scripts/config.sh    /var/www/localhost/htdocs/include/config.php
+sed -i "s@host='localhost'@host='$DB_HOST'@g"   /etc/openvpn/scripts/config.sh  $WEBDIR/include/config.php
+sed -i "s@port='3306'@port='$DB_PORT'@g"  /etc/openvpn/scripts/config.sh    $WEBDIR/include/config.php
+sed -i "s@user=''@user='$DB_USER'@g"  /etc/openvpn/scripts/config.sh    $WEBDIR/include/config.php
+sed -i "s@pass=''@pass='$DB_PASSWORD'@g"  /etc/openvpn/scripts/config.sh    $WEBDIR/include/config.php
+sed -i "s@db='openvpn-admin'@db='$DB_NAME'@g" /etc/openvpn/scripts/config.sh    $WEBDIR/include/config.php
 
 
 #config openvpn
 if [ ! -f /etc/openvpn/server.conf ];then
-    cp /var/www/localhost/htdocs/installation/server.conf /etc/openvpn/
+    cp $WEBDIR/installation/server.conf /etc/openvpn/
     sed -i "s@proto tcp@proto $OVPN_PROTO@g" /etc/openvpn/server.conf
     sed -i "s@port 1194@port $OVPN_PORT@g" /etc/openvpn/server.conf
 fi
@@ -39,10 +39,10 @@ fi
 if [ $OVPN_PROTO = udp ];then
     sed -i "s@port 1194@port $OVPN_PORT@g" /etc/openvpn/server.conf
 fi
-if [ ! -d /var/www/localhost/htdocs/client-conf ];then
-    cp -r /var/www/localhost/htdocs/installation/client-conf /var/www/localhost/htdocs/
-    chown -R apache.apache /var/www/localhost/htdocs/client-conf
-    for file in $(find /var/www/localhost/htdocs/client-conf -name client.ovpn); do
+if [ ! -d $WEBDIR/client-conf ];then
+    cp -r $WEBDIR/installation/client-conf $WEBDIR/
+    chown -R apache.apache $WEBDIR/client-conf
+    for file in $(find $WEBDIR/client-conf -name client.ovpn); do
         sed -i "s/remote xxx\.xxx\.xxx\.xxx 443/remote $OVPN_ADDR $OVPN_PORT/" $file
         echo "<ca>" >> $file
         cat "/etc/openvpn/ca.crt" >> $file
@@ -62,6 +62,11 @@ if [ ! -c /dev/net/tun ]; then
     mknod /dev/net/tun c 10 200
 fi
 iptables -t nat -A POSTROUTING -s 10.254.254.0/24 -o eth0 -j MASQUERADE
+
+#language
+if [ $LAN = CN ];then
+    cp -r $WEBDIR/installation/zh_CN/*  $WEBDIR/
+fi
 
 httpd
 cd /etc/openvpn && /usr/sbin/openvpn --config /etc/openvpn/server.conf

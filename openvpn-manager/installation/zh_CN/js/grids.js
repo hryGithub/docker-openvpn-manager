@@ -197,34 +197,34 @@ $(function () {
     // Primary key
     idField: 'user_id',
     columns: [
-      { title: "ID", field: "user_id", editable: userEditable },
-      { title: "Pass", field: "user_pass", editable: userEditable },
-      { title: "Mail", field: "user_mail", editable: userEditable },
-      { title: "Phone", field: "user_phone", editable: userEditable },
+      { title: "用户名", field: "user_id", editable: userEditable },
+      { title: "密码", field: "user_pass", editable: userEditable },
+      { title: "邮箱", field: "user_mail", editable: userEditable },
+      { title: "手机", field: "user_phone", editable: userEditable },
       {
-         title: "Online",
+         title: "在线",
          field: "user_online",
          formatter : LEDIndicatorFormatter
       },
       {
-         title: "Enabled",
+         title: "可用",
          field: "user_enable",
          formatter : checkFormatter,
          events: {
             'click input': function (e, value, row) {
-              genericSetField('user_enable', value === '1' ? '0': '1', row.user_id);
+               genericSetField('user_enable', $(this).is(':checked') ? '1' : '0', row.user_id);
             }
          }
       },
-      { title: "Start Date", field: "user_start_date", editable: userDateEditable },
-      { title: "End Date", field: "user_end_date", editable: userDateEditable },
+      { title: "开始时间", field: "user_start_date", editable: userDateEditable },
+      { title: "结束时间", field: "user_end_date", editable: userDateEditable },
       {
-        title: 'Delete',
+        title: '删除',
         field: "user_del",
         formatter: deleteFormatter,
         events: {
           'click .glyphicon': function (e, value, row) {
-            if (confirm('Are you sure you want to delete this user?')) {
+            if (confirm('是否删除该用户?')) {
               deleteUser(row.user_id);
             }
           }
@@ -255,15 +255,15 @@ $(function () {
     // Primary key
     idField: 'admin_id',
     columns: [
-      { title: "ID", field: "admin_id", editable: adminEditable },
-      { title: "Pass", field: "admin_pass", editable: adminEditable },
+      { title: "用户名", field: "admin_id", editable: adminEditable },
+      { title: "密码", field: "admin_pass", editable: adminEditable },
       {
-        title: 'Delete',
+        title: '删除',
         field: "admin_del",
         formatter: deleteFormatter,
         events: {
           'click .glyphicon': function (e, value, row) {
-            if (confirm('Are you sure you want to delete this admin?')) {
+            if (confirm('是否删除该管理员?')) {
               deleteAdmin(row.admin_id);
             }
           }
@@ -293,16 +293,16 @@ $(function () {
       return params;
     },
     columns: [
-      { title: "Log ID", field: "log_id" },
-      { title: "User ID", field: "user_id", filterControl : 'select' },
-      { title: "Trusted IP", field: "log_trusted_ip", filterControl : 'select' },
-      { title: "Trusted Port", field: "log_trusted_port", filterControl : 'select' },
-      { title: "Remote IP", field: "log_remote_ip", filterControl : 'select' },
-      { title: "Remote Port", field: "log_remote_port", filterControl : 'select' },
-      { title: "Start Time", field: "log_start_time" },
-      { title: "End Time", field: "log_end_time" },
-      { title: "Receveid", field: "log_received" },
-      { title: "Sent", field: "log_send" }
+      { title: "序号", field: "log_id" },
+      { title: "用户名", field: "user_id", filterControl : 'select' },
+      { title: "客户端地址", field: "log_trusted_ip", filterControl : 'select' },
+      { title: "客户端端口", field: "log_trusted_port", filterControl : 'select' },
+      { title: "远程地址", field: "log_remote_ip", filterControl : 'select' },
+      { title: "远程端口", field: "log_remote_port", filterControl : 'select' },
+      { title: "开始时间", field: "log_start_time" },
+      { title: "结束时间", field: "log_end_time" },
+      { title: "接收", field: "log_received" },
+      { title: "发送", field: "log_send" }
     ]
   });
 
