@@ -9,7 +9,7 @@ RUN mkdir -p /etc/openvpn/ccd && mkdir /run/apache2 -p && chmod 777 -R /run
 
 
 ADD ./openvpn-manager /var/www/localhost/htdocs
-RUN  mv /var/www/localhost/htdocs/installation/scripts /etc/openvpn/ && chmod +x /etc/openvpn/*.sh 
+RUN  mv /var/www/localhost/htdocs/installation/scripts /etc/openvpn/ && chmod +x /etc/openvpn/scripts/*.sh 
 
 ENV EASYRSA=/usr/share/easy-rsa/
 #openvpn env

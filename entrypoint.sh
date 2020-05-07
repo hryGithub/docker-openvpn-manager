@@ -65,4 +65,4 @@ iptables -t nat -A POSTROUTING -s 10.254.254.0/24 -o eth0 -j MASQUERADE
 
 
 httpd -DFOREGROUND
-#cd /etc/openvpn && /usr/sbin/openvpn --config /etc/openvpn/server.conf
+cd /etc/openvpn && /usr/sbin/openvpn --config /etc/openvpn/server.conf
