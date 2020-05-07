@@ -11,3 +11,6 @@
     cd docker
     docker-compose -f docker-compose-build.yml up 
 
+
+# install web system
+    visit http://${your-openvpn-manger-ip}:${your-openvpn-manger-port}/index.php?installation
