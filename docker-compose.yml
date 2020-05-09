@@ -17,7 +17,7 @@ services:
     networks:
       - openvpn-manager
   openvpn-manager:
-    image: hry326/openvpn-manager
+    image: hyr326/openvpn-manager:latest
     cap_add:
       - NET_ADMIN
     depends_on: 
