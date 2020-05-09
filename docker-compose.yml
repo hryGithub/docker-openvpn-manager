@@ -18,6 +18,8 @@ services:
       - openvpn-manager
   openvpn-manager:
     image: hry326/openvpn-manager
+    cap_add:
+      - NET_ADMIN
     depends_on: 
       - mysql
     restart: on-failure
