@@ -7,14 +7,13 @@ RUN echo -e "http://mirrors.aliyun.com/alpine/v3.6/main\nhttp://mirrors.aliyun.c
 
 RUN mkdir -p /etc/openvpn/ccd && mkdir /run/apache2 -p && chmod 777 -R /run
 
-
-ADD ./openvpn-manager /var/www/localhost/htdocs
-RUN  mv /var/www/localhost/htdocs/installation/scripts /etc/openvpn/ && chmod +x /etc/openvpn/scripts/*.sh 
-
 ENV EASYRSA=/usr/share/easy-rsa
 ENV WEBDIR=/var/www/localhost/htdocs
-
 ENV LAN=EN
+
+ADD ./openvpn-manager /var/www/localhost/htdocs
+RUN  mv $WEBDIR/installation/scripts /etc/openvpn/ && chmod +x /etc/openvpn/scripts/*.sh 
+
 #openvpn env
 ENV OVPN_ADDR=0.0.0.0 \ 
     OVPN_PORT=1194 \    
@@ -26,11 +25,6 @@ ENV DB_HOST=127.0.0.1 \
     DB_NAME=openvpn \
     DB_USER=openvpn \
     DB_PASSWORD=openvpn
-
-
-
-#rsa
-
 
 
 EXPOSE 1194/udp 80

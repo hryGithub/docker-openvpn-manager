@@ -1,13 +1,5 @@
 #!/bin/bash
 
-#config db
-sed -i "s@host='localhost'@host='$DB_HOST'@g"   /etc/openvpn/scripts/config.sh  $WEBDIR/include/config.php
-sed -i "s@port='3306'@port='$DB_PORT'@g"  /etc/openvpn/scripts/config.sh    $WEBDIR/include/config.php
-sed -i "s@user=''@user='$DB_USER'@g"  /etc/openvpn/scripts/config.sh    $WEBDIR/include/config.php
-sed -i "s@pass=''@pass='$DB_PASSWORD'@g"  /etc/openvpn/scripts/config.sh    $WEBDIR/include/config.php
-sed -i "s@db='openvpn-admin'@db='$DB_NAME'@g" /etc/openvpn/scripts/config.sh    $WEBDIR/include/config.php
-
-
 #config openvpn
 if [ ! -f /etc/openvpn/server.conf ];then
     cp $WEBDIR/installation/server.conf /etc/openvpn/
@@ -69,4 +61,4 @@ if [ $LAN = CN ];then
 fi
 
 httpd
-cd /etc/openvpn && /usr/sbin/openvpn --config /etc/openvpn/server.conf
+/usr/sbin/openvpn --config /etc/openvpn/server.conf
