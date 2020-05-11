@@ -60,5 +60,6 @@ if [ $LAN = CN ];then
     cp -r $WEBDIR/installation/zh_CN/*  $WEBDIR/
 fi
 
-httpd
-/usr/sbin/openvpn --config /etc/openvpn/server.conf
+/usr/sbin/openvpn --config /etc/openvpn/server.conf --daemon
+
+httpd -D FOREGROUND
