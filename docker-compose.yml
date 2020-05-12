@@ -32,8 +32,7 @@ services:
       DB_NAME: openvpn      
       DB_USER: openvpn
       DB_PASSWORD: openvpn
-      OVPN_ADDR: 
-      LAN: CN
+      OVPN_ADDR: xxx.xxx.xxx.xxx
     networks:
       - openvpn-manager
 
