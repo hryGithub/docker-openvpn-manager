@@ -191,11 +191,11 @@
       <nav class="navbar navbar-default">
         <div class="row col-md-12">
           <div class="col-md-6">
-            <p class="navbar-text signed">login as <?php echo $_SESSION['admin_id']; ?>
+            <p class="navbar-text signed">Signed in as <?php echo $_SESSION['admin_id']; ?>
             </div>
             <div class="col-md-6">
-              <a class="navbar-text navbar-right" href="index.php?logout" title="Logout"><button class="btn btn-danger">logout <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button></a>
-              <a class="navbar-text navbar-right" href="index.php" title="Configuration"><button class="btn btn-default">configrations</button></a>
+              <a class="navbar-text navbar-right" href="index.php?logout" title="Logout"><button class="btn btn-danger">Logout <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button></a>
+              <a class="navbar-text navbar-right" href="index.php" title="Configuration"><button class="btn btn-default">Configrations</button></a>
             </p>
           </div>
         </div>
