@@ -2,7 +2,7 @@
 
 # db config
 if [ ! -f $DB_FILE ];then
-    mkdir -p /data/ && touch $DB_FILE
+    mkdir -p /data/ && touch $DB_FILE && chmod 777 $DB_FILE
 fi
 
 # config openvpn
