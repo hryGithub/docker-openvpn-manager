@@ -93,7 +93,7 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>OpenVPN-Manager</title>
+    <title>OpenVPN-manager</title>
 
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" type="text/css" />
@@ -110,7 +110,7 @@
     // --------------- INSTALLATION ---------------
     if(isset($_GET['installation'])) {
       if(isInstalled($bdd) == true) {
-        printError('OpenVPN-Manager is already installed. Redirection.');
+        printError('OpenVPN-manager is already installed. Redirection.');
         header( "refresh:3;url=index.php?admin" );
         exit(-1);
       }
@@ -140,7 +140,7 @@
             exit(1);
           }
 
-          unlink($sql_file);
+          //unlink($sql_file);
 
           // Update schema to the new value
           updateSchema($bdd, $migration_value);
@@ -154,7 +154,7 @@
         $req->execute(array($admin_username, $hash_pass));
 
         rmdir(dirname(__FILE__) . '/sql');
-        printSuccess('Well done, OpenVPN-Manager is installed. Redirection.');
+        printSuccess('Well done, OpenVPN-manager is installed. Redirection.');
         header( "refresh:3;url=index.php?admin" );
       }
       // Print the installation form
@@ -191,11 +191,11 @@
       <nav class="navbar navbar-default">
         <div class="row col-md-12">
           <div class="col-md-6">
-            <p class="navbar-text signed">Signed in as <?php echo $_SESSION['admin_id']; ?>
+            <p class="navbar-text signed">login as <?php echo $_SESSION['admin_id']; ?>
             </div>
             <div class="col-md-6">
-              <a class="navbar-text navbar-right" href="index.php?logout" title="Logout"><button class="btn btn-danger">Logout <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button></a>
-              <a class="navbar-text navbar-right" href="index.php" title="Configuration"><button class="btn btn-default">Configurations</button></a>
+              <a class="navbar-text navbar-right" href="index.php?logout" title="Logout"><button class="btn btn-danger">logout <span class="glyphicon glyphicon-off" aria-hidden="true"></span></button></a>
+              <a class="navbar-text navbar-right" href="index.php" title="Configuration"><button class="btn btn-default">configrations</button></a>
             </p>
           </div>
         </div>
