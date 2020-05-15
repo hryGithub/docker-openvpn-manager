@@ -93,7 +93,7 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>OpenVPN-Admin</title>
+    <title>OpenVPN-Manager</title>
 
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css" type="text/css" />
@@ -110,7 +110,7 @@
     // --------------- INSTALLATION ---------------
     if(isset($_GET['installation'])) {
       if(isInstalled($bdd) == true) {
-        printError('OpenVPN-admin is already installed. Redirection.');
+        printError('OpenVPN-Manager is already installed. Redirection.');
         header( "refresh:3;url=index.php?admin" );
         exit(-1);
       }
@@ -154,7 +154,7 @@
         $req->execute(array($admin_username, $hash_pass));
 
         rmdir(dirname(__FILE__) . '/sql');
-        printSuccess('Well done, OpenVPN-Admin is installed. Redirection.');
+        printSuccess('Well done, OpenVPN-Manager is installed. Redirection.');
         header( "refresh:3;url=index.php?admin" );
       }
       // Print the installation form
