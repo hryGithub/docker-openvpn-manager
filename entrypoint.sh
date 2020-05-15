@@ -1,6 +1,11 @@
 #!/bin/bash
 
-#config openvpn
+# db config
+if [ ! -f $DB_FILE ];then
+    mkdir -p /data/ && touch $DB_FILE
+fi
+
+# config openvpn
 if [ ! -f /etc/openvpn/server.conf ];then
     cp $WEBDIR/installation/server.conf /etc/openvpn/
     sed -i "s@proto tcp@proto $OVPN_PROTO@g" /etc/openvpn/server.conf

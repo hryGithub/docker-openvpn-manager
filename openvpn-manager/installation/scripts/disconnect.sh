@@ -9,7 +9,7 @@ trusted_ip=$(echap "$trusted_ip")
 trusted_port=$(echap "$trusted_port")
 
 # We specify the user is offline
-mysql -h$host -P$port -u$user -p$pass $db -e "UPDATE user SET user_online=0 WHERE user_id='$common_name'"
+sqlite3 $DB "UPDATE user SET user_online=0 WHERE user_id='$common_name'"
 
 # We insert the deconnection datetime
-mysql -h$host -P$port -u$user -p$pass $db -e "UPDATE log SET log_end_time=now(), log_received='$bytes_received', log_send='$bytes_sent' WHERE log_trusted_ip='$trusted_ip' AND log_trusted_port='$trusted_port' AND user_id='$common_name' AND log_end_time IS NULL"
+sqlite3 $DB "UPDATE log SET log_end_time=datetime('now','localtime'), log_received='$bytes_received', log_send='$bytes_sent' WHERE log_trusted_ip='$trusted_ip' AND log_trusted_port='$trusted_port' AND user_id='$common_name' AND log_end_time IS NULL"

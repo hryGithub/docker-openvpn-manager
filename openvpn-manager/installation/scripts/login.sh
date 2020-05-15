@@ -6,7 +6,7 @@ username=$(echap "$username")
 password=$(echap "$password")
 
 # Authentication
-user_pass=$(mysql -h$host -P$port -u$user -p$pass $db -sN -e "SELECT user_pass FROM user WHERE user_id = '$username' AND user_enable=1 AND (TO_DAYS(now()) >= TO_DAYS(user_start_date) OR user_start_date IS NULL) AND (TO_DAYS(now()) <= TO_DAYS(user_end_date) OR user_end_date IS NULL)")
+user_pass=$(sqlite3 $DB "SELECT user_pass FROM user WHERE user_id = '$username' AND user_enable=1 AND (strftime('%s','now') >= strftime('%s',user_start_date) OR user_start_date IS NULL AND (strftime('%s','now') <= strftime('%s',user_end_date)) OR user_end_date IS NULL)")
 
 # Check the user
 if [ "$user_pass" == '' ]; then

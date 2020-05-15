@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ sqlite ]
   pull_request:
-    branches: [ master ]
+    branches: [ sqlite ]
 
 jobs:
 
@@ -18,7 +18,7 @@ jobs:
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: hyr326/openvpn-manager
-        tags: "latest"
+        tags: "sqlite"
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         dockerfile: Dockerfile
