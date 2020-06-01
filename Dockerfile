@@ -31,6 +31,6 @@ EXPOSE 1194/udp 80
 
 ADD entrypoint.sh /entrypoint.sh 
 
-VOLUME /var/www/localhost/htdocs
+VOLUME ['/var/www/localhost/htdocs','/etc/openvpn/']
 
 ENTRYPOINT ["bash", "/entrypoint.sh"]
