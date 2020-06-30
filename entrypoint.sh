@@ -7,6 +7,14 @@ if [ ! -f /etc/openvpn/server.conf ];then
     sed -i "s@port 1194@port $OVPN_PORT@g" /etc/openvpn/server.conf
 fi
 
+#config mysql
+sed -i "s@host=@host=$DB_HOST@g" /etc/openvpn/scripts/config.sh
+sed -i "s@port=@port=$DB_PORT@g" /etc/openvpn/scripts/config.sh
+sed -i "s@user=@user=$DB_USER@g" /etc/openvpn/scripts/config.sh
+sed -i "s@pass=@pass=$DB_PASSWORD@g" /etc/openvpn/scripts/config.sh
+sed -i "s@db=@db=$DB_NAME@g" /etc/openvpn/scripts/config.sh
+
+
 init-pki(){
     source $EASYRSA/vars.example
     easyrsa init-pki
