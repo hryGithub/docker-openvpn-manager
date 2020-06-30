@@ -4,6 +4,7 @@
 if [ ! -f $DB_FILE ];then
     mkdir -p /data/ && touch $DB_FILE && chmod 777 $DB_FILE
 fi
+sed -i "s@DB=@DB=$DB_FILE@g" /etc/openvpn/scripts/config.sh
 
 # config openvpn
 if [ ! -f /etc/openvpn/server.conf ];then
