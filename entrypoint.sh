@@ -7,13 +7,6 @@ if [ ! -f /etc/openvpn/server.conf ];then
     sed -i "s@port 1194@port $OVPN_PORT@g" /etc/openvpn/server.conf
 fi
 
-#config mysql
-sed -i "s@host='localhost'@host='$DB_HOST'@g"   /etc/openvpn/scripts/config.sh
-sed -i "s@port=3306@port=$DB_PORT@g"  /etc/openvpn/scripts/config.sh
-sed -i "s@user='root'@user='$DB_USER'@g"  /etc/openvpn/scripts/config.sh
-sed -i "s@pass=''@pass='$DB_PASSWORD'@g"  /etc/openvpn/scripts/config.sh
-sed -i "s@db='openvpn-admin'@db='$DB_NAME'@g" /etc/openvpn/scripts/config.sh
-
 
 init-pki(){
     source $EASYRSA/vars.example
@@ -62,11 +55,6 @@ if [ ! -c /dev/net/tun ]; then
     mknod /dev/net/tun c 10 200
 fi
 iptables -t nat -A POSTROUTING -s 10.254.254.0/24 -o eth0 -j MASQUERADE
-
-#language
-if [ $LAN = CN ];then
-    cp -r $WEBDIR/installation/zh_CN/*  $WEBDIR/
-fi
 
 /usr/sbin/openvpn --config /etc/openvpn/server.conf --daemon
 
