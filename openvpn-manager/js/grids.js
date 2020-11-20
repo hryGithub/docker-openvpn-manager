@@ -200,7 +200,6 @@ $(function () {
       { title: "ID", field: "user_id", editable: userEditable },
       { title: "Pass", field: "user_pass", editable: userEditable },
       { title: "Mail", field: "user_mail", editable: userEditable },
-      { title: "Phone", field: "user_phone", editable: userEditable },
       {
          title: "Online",
          field: "user_online",
