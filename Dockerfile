@@ -12,7 +12,6 @@ ENV WEBDIR=/var/www/localhost/htdocs
 ENV LAN=EN
 
 ADD ./openvpn-manager /var/www/localhost/htdocs
-RUN  mv $WEBDIR/installation/scripts /etc/openvpn/ && chmod +x /etc/openvpn/scripts/*.sh 
 
 #openvpn env
 ENV OVPN_ADDR=0.0.0.0 \ 
