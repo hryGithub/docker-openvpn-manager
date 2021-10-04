@@ -27,6 +27,6 @@ CREATE TABLE IF NOT EXISTS "user" (
 "user_mail"  TEXT(64) COLLATE NOCASE DEFAULT NULL,
 "user_online"  INTEGER(1) NOT NULL DEFAULT 0,
 "user_enable"  INTEGER(1),
-"user_start_date"  TEXT,
-"user_end_date"  TEXT
+"user_start_date"  DATE NULL DEFAULT NULL,
+"user_end_date"  DATE NULL DEFAULT NULL
 );
