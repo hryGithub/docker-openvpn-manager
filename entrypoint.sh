@@ -12,9 +12,13 @@ if [ ! -f /etc/openvpn/server.conf ];then
     sed -i "s@proto tcp@proto $OVPN_PROTO@g" /etc/openvpn/server.conf
     sed -i "s@port 1194@port $OVPN_PORT@g" /etc/openvpn/server.conf
 fi
-if [ ! -d /etc/openvpn/scripts/ ];then
+if [ ! -d /etc/openvpn/scripts ];then
     cp -r $WEBDIR/installation/scripts /etc/openvpn/ 
     chmod +x /etc/openvpn/scripts/*.sh 
+fi
+
+if [ ! -d /etc/openvpn/ccd ];then
+    mkdir -p /etc/openvpn/ccd
 fi
 init-pki(){
     source $EASYRSA/vars.example

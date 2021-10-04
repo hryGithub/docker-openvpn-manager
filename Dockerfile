@@ -16,7 +16,8 @@ ADD ./openvpn-manager /var/www/localhost/htdocs
 #openvpn env
 ENV OVPN_ADDR=0.0.0.0 \ 
     OVPN_PORT=1194 \    
-    OVPN_PROTO=udp
+    OVPN_PROTO=udp \
+    LAN=CN 
 
 #db
 ENV DB_FILE=/data/ovpn.sqlite3
