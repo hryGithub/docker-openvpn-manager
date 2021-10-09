@@ -21,10 +21,10 @@
     // Error ?
     if($data && passEqual($_POST['configuration_pass'], $data['user_pass'])) {
       // Thanks http://stackoverflow.com/questions/4914750/how-to-zip-a-whole-folder-using-php
-      if($_POST['configuration_os'] == "gnu_linux") {
-        $conf_dir = 'gnu-linux';
-      } elseif($_POST['configuration_os'] == "osx_viscosity") {
-        $conf_dir = 'osx-viscosity';
+      if($_POST['configuration_os'] == "linux") {
+        $conf_dir = 'linux';
+      } elseif($_POST['configuration_os'] == "macos") {
+        $conf_dir = 'macos';
       } else {
         $conf_dir = 'windows';
       }
