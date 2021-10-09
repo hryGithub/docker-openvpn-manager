@@ -21,8 +21,8 @@
         <div class="form-group">
           <label for="configuration_os">操作系统</label>
           <select name="configuration_os" id="configuration_os" class="form-control">
-            <option value="gnu_linux">GNU/Linux</option>
-            <option value="osx_viscosity">OSX/Viscosity</option>
+            <option value="linux">Linux</option>
+            <option value="macos">MacOS</option>
             <option value="windows">Windows</option>
           </select>
         </div>
