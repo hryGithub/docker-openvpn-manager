@@ -9,7 +9,6 @@ RUN mkdir -p /etc/openvpn/ccd && mkdir /run/apache2 -p && chmod 777 -R /run
 
 ENV EASYRSA=/usr/share/easy-rsa
 ENV WEBDIR=/var/www/localhost/htdocs
-ENV LAN=EN
 
 ADD ./openvpn-manager /var/www/localhost/htdocs
 
@@ -23,7 +22,7 @@ ENV OVPN_ADDR=0.0.0.0 \
 ENV DB_FILE=/data/ovpn.sqlite3
 
 
-EXPOSE 1194/udp 80
+EXPOSE 1194/udp 80 1194
 ADD entrypoint.sh /entrypoint.sh 
 
 VOLUME ["/var/www/localhost/htdocs", "/etc/openvpn/", "/data"]
