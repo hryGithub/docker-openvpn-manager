@@ -3,6 +3,7 @@ version: '3'
 services:
   mysql:
     image: mysql:5.7
+    container_name: openvpn-mysql
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - ./mysql/:/var/lib/mysql/
@@ -18,6 +19,9 @@ services:
       - openvpn-manager
   openvpn-manager:
     image: hyr326/openvpn-manager:latest
+    container_name: openvpn-manager
+    volumes:
+      - ./openvpn/:/etc/openvpn/
     cap_add:
       - NET_ADMIN
     depends_on: 
@@ -33,6 +37,7 @@ services:
       DB_USER: openvpn
       DB_PASSWORD: openvpn
       OVPN_ADDR: xxx.xxx.xxx.xxx
+      LAN: CN
     networks:
       - openvpn-manager
 
