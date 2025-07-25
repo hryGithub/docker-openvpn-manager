@@ -21,7 +21,7 @@ if [ ! -d /etc/openvpn/ccd ];then
     mkdir -p /etc/openvpn/ccd
 fi
 init-pki(){
-    source $EASYRSA/vars.example
+    export EASYRSA_PKI="$EASYRSA/pki"
     easyrsa init-pki
     expect -c '
     	spawn easyrsa build-ca nopass
@@ -31,7 +31,7 @@ init-pki(){
     '
     easyrsa gen-dh
     easyrsa build-server-full server nopass
-    openvpn --genkey --secret $EASYRSA/pki/ta.key
+    openvpn --genkey secret $EASYRSA/pki/ta.key
     cp $EASYRSA/pki/{ca.crt,ta.key,issued/server.crt,private/server.key,dh.pem} "/etc/openvpn/"
 }
 
