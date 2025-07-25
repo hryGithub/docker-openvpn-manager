@@ -25,7 +25,7 @@ sed -i "s@db='openvpn-admin'@db='$DB_NAME'@g" /etc/openvpn/scripts/config.sh
 
 
 init-pki(){
-    source $EASYRSA/vars.example
+    export EASYRSA_PKI="$EASYRSA/pki"
     easyrsa init-pki
     expect -c '
     	spawn easyrsa build-ca nopass
